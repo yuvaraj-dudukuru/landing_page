@@ -46,42 +46,37 @@ body {
 
 /* ── HERO ─────────────────────────────────────── */
 .hero {
-  background: linear-gradient(135deg, var(--blue-dark), #111827);
+  background: #020617;
   position: relative;
   overflow: hidden;
-  padding: 100px 0 80px;
+  padding: 140px 0 100px;
+  display: flex;
+  align-items: center;
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(245,196,0,0.13) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,255,255,0.06) 0%, transparent 60%);
+  top: -20%;
+  left: 30%;
+  width: 80%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(0, 102, 178, 0.25) 0%, rgba(0, 141, 205, 0.05) 40%, transparent 70%);
   pointer-events: none;
-}
-
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
-
-.hero-blob {
-  position: absolute;
-  width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,196,0,0.08) 0%, transparent 70%);
-  top: -100px; right: -100px;
-  animation: pulse 6s ease-in-out infinite;
+  transform: rotate(-15deg);
 }
 
-@keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.08);opacity:.7} }
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 50%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(245, 196, 0, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
 
 .topbar {
   display: flex;
@@ -93,11 +88,9 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
@@ -125,112 +118,184 @@ body {
 }
 
 .hero-badge {
-  background: rgba(245,196,0,0.15);
-  border: 1px solid rgba(245,196,0,0.35);
-  color: var(--yellow);
-  font-size: 12px;
+  background: rgba(0, 102, 178, 0.1);
+  border: 1px solid rgba(0, 102, 178, 0.2);
+  color: var(--blue);
+  font-size: 13px;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 100px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.hero-body {
-  max-width: 900px;
+.hero-container {
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 64px 48px 0;
-  text-align: center;
+  padding: 0 48px;
   position: relative;
   z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: left;
 }
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(245,196,0,0.12);
-  border: 1px solid rgba(245,196,0,0.3);
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
-  padding: 6px 16px;
-  color: var(--yellow);
+  padding: 8px 20px;
+  color: var(--white);
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 28px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
   animation: fadeUp 0.6s ease both;
+  backdrop-filter: blur(10px);
 }
 
 .hero-eyebrow::before {
   content: '';
-  width: 6px; height: 6px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--yellow);
-  animation: blink 1.4s ease infinite;
+  box-shadow: 0 0 10px var(--yellow);
+  animation: pulse-dot 2s infinite;
 }
 
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 141, 205, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 141, 205, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 141, 205, 0); }
+}
 
 .hero-title {
   font-family: 'Sora', sans-serif;
-  font-size: clamp(36px, 5vw, 58px);
+  font-size: clamp(40px, 4.5vw, 64px);
   font-weight: 800;
   color: var(--white);
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -1.5px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   animation: fadeUp 0.6s 0.1s ease both;
 }
 
-.hero-title span { color: var(--yellow); }
+.hero-title span { 
+  background: linear-gradient(to right, var(--yellow-dim), #60A5FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 .hero-desc {
-  font-size: 17px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  max-width: 580px;
-  margin: 0 auto 44px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 520px;
+  margin-bottom: 40px;
   animation: fadeUp 0.6s 0.2s ease both;
 }
 
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s;
   animation: fadeUp 0.6s 0.3s ease both;
-  max-width: 680px;
-  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 102, 178, 0.3);
 }
 
-.stat {
-  flex: 1;
-  padding: 20px 16px;
-  text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.1);
+.hero-cta:hover {
+  background: var(--blue-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 102, 178, 0.4);
 }
 
-.stat:last-child { border-right: none; }
+.hero-cta .arrow {
+  transition: transform 0.3s;
+}
+
+.hero-cta:hover .arrow {
+  transform: translateX(4px);
+}
+
+.hero-visual {
+  position: relative;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 32px 24px;
+  border-radius: var(--radius);
+  text-align: left;
+  transition: transform 0.3s, background 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 102, 178, 0.15);
+  color: #60A5FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.stat-icon svg {
+  width: 24px;
+  height: 24px;
+}
 
 .stat-value {
   font-family: 'Sora', sans-serif;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 700;
-  color: var(--yellow);
-  display: block;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 4px;
 }
 
 .stat-label {
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 4px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
 }
 
 @keyframes fadeUp {
@@ -881,30 +946,40 @@ textarea { resize: vertical; min-height: 80px; }
 @media (max-width: 900px) {
   .main { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 48px; }
   .form-card { position: static; }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-desc {
+    margin: 0 auto 32px;
+  }
 }
 
 @media (max-width: 760px) {
-  .hero { padding: 90px 0 60px; }
+  .hero { padding: 120px 0 60px; }
   .topbar { padding: 12px 20px; }
-  .hero-body { padding: 24px 20px 0; }
+  .hero-container { padding: 0 20px; }
   .hero-title { font-size: clamp(32px, 8vw, 40px); }
   .hero-desc { font-size: 15px; margin-bottom: 32px; }
   
-  .hero-stats { 
-    display: grid; 
+  .hero-stats-grid { 
     grid-template-columns: 1fr 1fr; 
-    border: none; 
-    background: transparent; 
-    gap: 12px; 
-    box-shadow: none;
+    gap: 16px;
   }
-  .stat { 
-    border: 1px solid rgba(255,255,255,0.1); 
-    border-radius: var(--radius-sm); 
-    background: rgba(255,255,255,0.05); 
-    padding: 16px 12px; 
+  .stat-card { 
+    padding: 24px 16px; 
   }
-  .stat-value { font-size: 22px; }
+  .stat-icon { width: 40px; height: 40px; margin-bottom: 16px; }
+  .stat-icon svg { width: 20px; height: 20px; }
+  .stat-value { font-size: 24px; }
   
   .main { padding: 32px 16px 60px; }
   .form-row { grid-template-columns: 1fr; }
@@ -936,9 +1011,6 @@ textarea { resize: vertical; min-height: 80px; }
 
 <!-- ── HERO ──────────────────────────────────────── -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-blob"></div>
-
   <div class="topbar">
     <a href="https://fraylontech.com" class="logo">
       <img src="logo.png" alt="Fraylon Technologies Logo" class="logo-img">
@@ -946,32 +1018,50 @@ textarea { resize: vertical; min-height: 80px; }
     <div class="hero-badge">Applications Open</div>
   </div>
 
-  <div class="hero-body">
-    <div class="hero-eyebrow">Summer Internship Program 2026</div>
-    <h1 class="hero-title">
-      Build Real Skills.<br />
-      <span>Ship Real Projects.</span>
-    </h1>
-    <p class="hero-desc">
-      45 days. Live sessions twice a week. 6 high-demand domains.
-      A certificate from Fraylon Technologies — and a project on your GitHub.
-    </p>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-value">45</span>
-        <span class="stat-label">Days</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">6</span>
-        <span class="stat-label">Domains</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">₹1,500</span>
-        <span class="stat-label">Registration Fee</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">May 8</span>
-        <span class="stat-label">Deadline</span>
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Summer Internship Program 2026</div>
+      <h1 class="hero-title">
+        Build Real Skills.<br />
+        <span>Ship Real Projects.</span>
+      </h1>
+      <p class="hero-desc">
+        45 days. Live sessions twice a week. 6 high-demand domains.
+        A certificate from Fraylon Technologies — and a project on your GitHub.
+      </p>
+      <a href="#regForm" class="hero-cta">Register Now <span class="arrow">→</span></a>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="hero-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span class="stat-value">45</span>
+          <span class="stat-label">Days</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <span class="stat-value">6</span>
+          <span class="stat-label">Domains</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+          </div>
+          <span class="stat-value">₹1,500</span>
+          <span class="stat-label">Registration Fee</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          </div>
+          <span class="stat-value">May 8</span>
+          <span class="stat-label">Deadline</span>
+        </div>
       </div>
     </div>
   </div>
