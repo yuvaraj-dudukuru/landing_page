@@ -660,8 +660,19 @@ textarea { resize: vertical; min-height: 80px; }
 }
 
 .domain-icon {
-  font-size: 16px;
-  line-height: 1;
+  width: 18px;
+  height: 18px;
+  stroke: var(--muted);
+  transition: stroke 0.15s;
+  flex-shrink: 0;
+}
+
+.domain-option:checked + label .domain-icon {
+  stroke: var(--white);
+}
+
+.domain-option + label:hover .domain-icon {
+  stroke: var(--blue);
 }
 
 /* year selector */
@@ -960,7 +971,7 @@ textarea { resize: vertical; min-height: 80px; }
         <span class="stat-label">Registration Fee</span>
       </div>
       <div class="stat">
-        <span class="stat-value">May 25</span>
+        <span class="stat-value">May 8</span>
         <span class="stat-label">Deadline</span>
       </div>
     </div>
@@ -1122,12 +1133,12 @@ textarea { resize: vertical; min-height: 80px; }
     <div>
       <div class="section-label" style="margin-bottom: 12px;">Program highlights</div>
       <div class="info-chips">
-        <div class="chip"><div class="chip-icon">📅</div> 45-day program</div>
-        <div class="chip"><div class="chip-icon">🎥</div> 2 live sessions/week</div>
-        <div class="chip"><div class="chip-icon">🎓</div> Official certificate</div>
-        <div class="chip"><div class="chip-icon">💻</div> Real project on GitHub</div>
-        <div class="chip"><div class="chip-icon">🏫</div> Remote / hybrid</div>
-        <div class="chip"><div class="chip-icon">📲</div> WhatsApp support</div>
+        <div class="chip"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div> 45-day program</div>
+        <div class="chip"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div> 2 live sessions/week</div>
+        <div class="chip"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div> Official certificate</div>
+        <div class="chip"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div> Real project on GitHub</div>
+        <div class="chip"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div> Remote / hybrid</div>
+        <div class="chip"><div class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div> WhatsApp support</div>
       </div>
     </div>
 
@@ -1146,12 +1157,12 @@ textarea { resize: vertical; min-height: 80px; }
         <div class="form-row">
           <div class="form-group">
             <label for="firstName">First name <span class="req">*</span></label>
-            <input type="text" id="firstName" name="firstName" placeholder="Yuvaraj" autocomplete="given-name" />
+            <input type="text" id="firstName" name="firstName" placeholder="firstName" autocomplete="given-name" />
             <div class="field-error" id="firstName-err">Please enter your first name.</div>
           </div>
           <div class="form-group">
             <label for="lastName">Last name <span class="req">*</span></label>
-            <input type="text" id="lastName" name="lastName" placeholder="D" autocomplete="family-name" />
+            <input type="text" id="lastName" name="lastName" placeholder="lastName" autocomplete="family-name" />
             <div class="field-error" id="lastName-err">Please enter your last name.</div>
           </div>
         </div>
@@ -1217,22 +1228,22 @@ textarea { resize: vertical; min-height: 80px; }
           <label>Internship domain <span class="req">*</span></label>
           <div class="domain-select-grid">
             <input type="radio" name="domain" id="d1" value="Web Development" class="domain-option" />
-            <label for="d1"><span class="domain-icon">🌐</span> Web Development</label>
+            <label for="d1"><svg class="domain-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Web Development</label>
 
             <input type="radio" name="domain" id="d2" value="Python Programming" class="domain-option" />
-            <label for="d2"><span class="domain-icon">🐍</span> Python</label>
+            <label for="d2"><svg class="domain-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg> Python</label>
 
             <input type="radio" name="domain" id="d3" value="Artificial Intelligence / ML" class="domain-option" />
-            <label for="d3"><span class="domain-icon">🤖</span> AI / ML</label>
+            <label for="d3"><svg class="domain-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg> AI / ML</label>
 
             <input type="radio" name="domain" id="d4" value="Computer Science Fundamentals" class="domain-option" />
-            <label for="d4"><span class="domain-icon">💡</span> Computer Science</label>
+            <label for="d4"><svg class="domain-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Computer Science</label>
 
             <input type="radio" name="domain" id="d7" value="Digital Marketing" class="domain-option" />
-            <label for="d7"><span class="domain-icon">📣</span> Digital Marketing</label>
+            <label for="d7"><svg class="domain-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> Digital Marketing</label>
 
             <input type="radio" name="domain" id="d8" value="Cybersecurity" class="domain-option" />
-            <label for="d8"><span class="domain-icon">🔐</span> Cybersecurity</label>
+            <label for="d8"><svg class="domain-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Cybersecurity</label>
           </div>
           <div class="field-error" id="domain-err">Please select a domain.</div>
         </div>
@@ -1260,15 +1271,15 @@ textarea { resize: vertical; min-height: 80px; }
 
         <button type="submit" class="submit-btn" id="submitBtn">
           <div class="btn-spinner" id="btnSpinner"></div>
-          <span id="btnText">Submit Registration →</span>
+          <span id="btnText">Submit Registration</span>
           <span class="btn-arrow" id="btnArrow">&#8594;</span>
         </button>
 
         <div class="form-note">
           By submitting, you agree to Fraylon's
           <a href="https://fraylontech.com" target="_blank">terms &amp; conditions</a>.
-          Registration closes <strong>May 25, 2026</strong>.
-          For help: <a href="mailto:internship@fraylontech.com">internship@fraylontech.com</a> or <a href="tel:+917989538151">+91 79895 38151</a>
+          Registration closes <strong>May 8, 2026</strong>.
+          For help: <a href="mailto:internship@fraylontech.com">internship@fraylontech.com</a> or <a href="tel:+918341839826">+91 83418 39826</a>
         </div>
       </form>
 
@@ -1294,7 +1305,7 @@ textarea { resize: vertical; min-height: 80px; }
   <ul class="footer-links">
     <li><a href="https://fraylontech.com" target="_blank" style="color: var(--muted);">Website</a></li>
     <li><a href="mailto:internship@fraylontech.com" style="color: var(--muted);">Email us</a></li>
-    <li><a href="tel:+917989538151" style="color: var(--muted);">+91 79895 38151</a></li>
+    <li><a href="tel:+918341839826" style="color: var(--muted);">+91 83418 39826</a></li>
     <li><a href="https://instagram.com/fraylontechnologies" target="_blank" style="color: var(--muted);">@fraylontechnologies</a></li>
   </ul>
   <div class="footer-copy" style="color: #9CA3AF;">© 2026 Fraylon Technologies. All rights reserved.</div>
